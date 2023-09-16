@@ -28,14 +28,6 @@ repos:
         args: [ -r, "~MD013,~MD029" ]
         exclude: "^.git"
 
-  - repo: https://github.com/jumanjihouse/pre-commit-hooks
-    rev: 3.0.0
-    hooks:
-      - id: shellcheck
-        args: [ --severity, "error" ]
-        exclude: "^.git"
-        files: "\\.sh$"
-
   - repo: local
     hooks:
       - id: ansible-lint
@@ -52,20 +44,3 @@ repos:
         language: python
         files: "^cluster.yml|^upgrade-cluster.yml|^reset.yml|^extra_playbooks/upgrade-only-k8s.yml"
 
-      - id: tox-inventory-builder
-        name: tox-inventory-builder
-        entry: bash -c "cd contrib/inventory_builder && tox"
-        language: python
-        pass_filenames: false
-
-      - id: check-readme-versions
-        name: check-readme-versions
-        entry: tests/scripts/check_readme_versions.sh
-        language: script
-        pass_filenames: false
-
-      - id: ci-matrix
-        name: ci-matrix
-        entry: tests/scripts/md-table/test.sh
-        language: script
-        pass_filenames: false
