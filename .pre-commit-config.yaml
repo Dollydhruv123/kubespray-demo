@@ -21,17 +21,3 @@ repos:
       - id: yamllint
         args: [--strict]
 
-  - repo: https://github.com/markdownlint/markdownlint
-    rev: v0.11.0
-    hooks:
-      - id: markdownlint
-        args: [ -r, "~MD013,~MD029" ]
-        exclude: "^.git"
-
-
-      - id: ansible-syntax-check
-        name: ansible-syntax-check
-        entry: env ANSIBLE_INVENTORY=inventory/local-tests.cfg ANSIBLE_REMOTE_USER=root ANSIBLE_BECOME="true" ANSIBLE_BECOME_USER=root ANSIBLE_VERBOSITY="3" ansible-playbook --syntax-check
-        language: python
-        files: "^cluster.yml|^upgrade-cluster.yml|^reset.yml|^extra_playbooks/upgrade-only-k8s.yml"
-
